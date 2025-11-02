@@ -20,12 +20,25 @@ def analyze_text(nlp, text, filename):
   # Tabla de Tokens y POS
   table = Table(title="Tokens y Part-of-Speech", show_lines=True)
   table.add_column("Token", style="cyan")
+  table.add_column("Lemma", style="red")
   table.add_column("POS (Part-of-Speech)", style="green")
   table.add_column("Dep (Dependency)", style="yellow")
   table.add_column("Head", style="magenta")
+  table.add_column("Shape", style="blue")
+  table.add_column("Alpha", style="red")
+  table.add_column("Stop", style="green")
 
   for token in doc:
-    table.add_row(token.text, token.pos_, token.dep_, token.head.text)
+    table.add_row(
+      token.text,
+      token.lemma_, 
+      token.pos_, 
+      token.dep_, 
+      token.head.text, 
+      token.shape_, 
+      str(token.is_alpha), 
+      str(token.is_stop)
+    )
   console.print(table)
 
   # Árbol de dependencias con Rich
